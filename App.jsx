@@ -23,7 +23,6 @@ function App() {
           </button>
         </>
       )}
-      <hr />
       {/*
       <h2>Debug</h2>
       <button onClick = {() => {
