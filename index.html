@@ -6,10 +6,25 @@
   <title>Verdent</title>
 </head>
 <body>
+  <!--react + babel-->
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="./modules/babel.js"></script>
+  <!--leaflet-->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-sA+e2dQ6cFf6tk5xmmw+LZx7/TCZbjv4+tvnFZ3VJ3w="
+    crossorigin=""
+  />
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-o9N1j7k+TxKPR6E3RkH5Qh6T0F2pS1K0K4R2l7gXvYk="
+    crossorigin=""
+  ></script>
+  <!--Components-->
   <script type="text/babel" src = "./verdent.jsx"></script>
+  <!--main-->
   <script type="text/babel" src = "./App.jsx"></script>
   <script type="text/babel">
     let n = document.getElementById('root')
