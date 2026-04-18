@@ -203,13 +203,11 @@
         function startGame() {
             mainMenu.style.opacity = '0';
             mainMenu.style.transform = 'scale(1.2)';
-            setTimeout(() => {
-                if (currentDifficulty == "easy"){
-                    window.open("https://31parkjulianTehCoder.github.io/expert-system", "_self")
-                } else if (currentDifficulty == "hard"){
-                    window.open("https://31parkjulianTehCoder.github.io/expert-system/hardmode.html", "_self")
-                }
-            }, 1000);
+            if (currentDifficulty == "easy"){
+                window.open("https://31parkjulianTehCoder.github.io/expert-system", "_self")
+            } else if (currentDifficulty == "hard"){
+                window.open("https://31parkjulianTehCoder.github.io/expert-system/hardmode.html", "_self")
+            }
         }
     </script>
 <script>
