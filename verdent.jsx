@@ -1,30 +1,45 @@
 function Main(){
-    
 
-    let [TZ, setTZ] = useState(0);
+    // n -> nothing
+    // r -> residential
+    // p -> plant/park
+    // w -> water
+    // s -> solar
+
+    // g -> sustainable (green)
+    // b -> neutral (blue)
+    // p -> unsustainable (purple)
+
+
+    let zHeight = 3;
+    let width = 3;
+    let height = 3;
+
+    let sWidth = 3;
+    let sHeight = 3;
+    
+    let [TS, setTS] = useState(new Array(width * height * zHeight * sWidth * sHeight).fill('n'))
+
+
+    let [sTile, setSTile] = useState({x: 0, y: 0, z: 0,});
     let twoRender = [];
-    for (let i = 0; i < width * height; ++i){
+    for (let i = 0; i < sWidth * sHeight; ++i){
         if (i % (width * 2) === 0 ) { twoRender.push(<div style={{width: "100%", height: "100%", /*border: "1px solid black", backgroundColor: "red"*/}}></div>); }
-        twoRender.push(<div style={{width: "100%", height: "100%", border: "4px outset black", backgroundColor: "dodgerblue", gridColumn: "span 2"}}>{board[TZ * width * height + i]}</div>);
+        twoRender.push(<div style={{width: "100%", height: "100%", border: "4px outset black", backgroundColor: "dodgerblue", gridColumn: "span 2"}}>{TS[sTile.z * sWidth * sHeight * width * height + Tile.y * sWidth * sHeight * width + sTile.x * sWidth * sHeight + i]}</div>);
         if (i % (width * 2) === width * 2 -1 ) {  twoRender.push(<div style={{width: "100%", height: "100%", /*border: "1px solid black", backgroundColor: "red"*/}}></div>); }
     }
 
-
-    let zHeight = 4;
-    let width = 4;
-    let height = 4;
-    let [board, setBoard] = useState([1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4,]);
-
     let toRender = [];
     for (let z = 0; z < zHeight; ++z){
-        let ITR = []; // use new array later
-        for (let i = z * width * height; i < (z + 1 ) * width * height; ++i) {
-            ITR.push(<div onClick = {() => {let temp = [...board]; temp[i] = prompt("update"); setBoard(temp)}} className="tile">{board[i]}</div>)
-        }
+        let zLayerBigTiles = new Array(width * height).fill(<div>empty</div>).map( (useless, i) =>
+            <div onClick = {() => { setSTile({x: i % width, y: Math.floor(i / width), z: z}); alert(`You clicked ${i % width}, ${Math.floor(i / width)}, ${z}!`); }} className="tile">
+                nnnn nnnn nnnn nnnn
+            </div>
+        );
 
         toRender.push(<div style={{
             transform: "rotate(30deg)",
-            // backgroundColor: "lightgray",
+            backgroundColor: "lightgray",
             display: "grid",
             gridTemplateColumns: `repeat(${width}, 100px`,
             gridTemplateRows: `repeat(${width}, 1fr`,
@@ -32,9 +47,10 @@ function Main(){
             width: "300px",
             margin: 90,
         }}>
-            {ITR}
+            {zLayerBigTiles}
         </div>);
     }
+
 
   return (
     <div style = {{ margin: 0, padding: 0, boxSizing: "border-box", fontFamily: "sans-serif",}}>
@@ -47,15 +63,11 @@ function Main(){
                 {toRender}
             </div>
             <div style={{height: "100%", width: "600px", border: "1px solid teal", display:"flex", justifyContent: "center", alignItems: "center"}}>
-                <div style={{width: 300, height: 300, display: "grid", gridTemplateColumns: `repeat ${width}, 1fr`, gridTemplateRows: `repeat ${height}, 1fr`}}>
+                <div style={{backgroundColor: "pink", width: 300, height: 300, display: "grid", gridTemplateColumns: `repeat ${width}, 1fr`, gridTemplateRows: `repeat ${height}, 1fr`}}>
                     {twoRender}
                 </div>
             </div>
         </div>
-
-
-
-
     </div>
   )
 }
