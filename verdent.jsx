@@ -65,8 +65,7 @@ function Main(){
         {/*</div>*/}
 
         {toRender}
-
-
+        </div>
     </div>
   )
 }
