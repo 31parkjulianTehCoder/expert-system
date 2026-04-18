@@ -7,7 +7,7 @@ function App() {
       {gameStarted ? (
         <Main />
       ) : (
-        <>
+        <div className = "initial">
           <h1>Verdent: Sustainable City Builder</h1>
           <p>
             Build a sustainable city and see how environmentally friendly it can
@@ -21,7 +21,7 @@ function App() {
           >
             Start
           </button>
-        </>
+        </div>
       )}
       {/*
       <h2>Debug</h2>
