@@ -1,5 +1,7 @@
 function App() {
   let [gameStarted, setStarted] = useState(false);
+  let [tempx, settempx] = useState(0);
+  let [tempy, settempy] = useState(0);
   return (
     <>
       {gameStarted ? (
@@ -21,8 +23,12 @@ function App() {
         </>
       )}
       <hr />
-      <h2>CDNMap demo (leaflet)</h2>
-      <CDNMap coordinates={[0, 0]} />
+      <h2>Debug</h2>
+      <button onClick = {() => {
+        settempx(prompt("Set x of map"));
+        settempy(prompt("Set y of map"))
+      }}>Update coordinates</button>
+      <CDNMap coordinates={[tempx, tempy]} />
     </>
   );
 }
