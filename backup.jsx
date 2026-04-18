@@ -26,6 +26,7 @@ function Backup() {
     <>
       <div>
         <button
+          style = {{margin: "5px", padding: "5px"}}
           onClick={() => {
             setCurrent("🏠");
           }}
@@ -33,6 +34,7 @@ function Backup() {
           Residential
         </button>
         <button
+          style = {{margin: "5px", padding: "5px"}}
           onClick={() => {
             setCurrent("🛢️");
           }}
@@ -40,6 +42,7 @@ function Backup() {
           Oil Plant
         </button>
         <button
+          style = {{margin: "5px", padding: "5px"}}
           onClick={() => {
             setCurrent("☀️");
           }}
@@ -47,6 +50,7 @@ function Backup() {
           Solar Farm
         </button>
         <button
+          style = {{margin: "5px", padding: "5px"}}
           onClick={() => {
             setCurrent("🍴");
           }}
@@ -54,6 +58,7 @@ function Backup() {
           Resturaunt
         </button>
         <button
+          style = {{margin: "5px", padding: "5px"}}
           onClick={() => {
             setCurrent("🎥");
           }}
@@ -61,7 +66,7 @@ function Backup() {
           Theather
         </button>
       </div>
-      <p style={{ fontSize: "20pt" }}>
+      <p style = {{margin: "5px", padding: "5px", fontSize: "20pt"}}  >
         Population:{" "}
         {(layer1.filter((x) => x === "🏠").length +
           layer2.filter((x) => x === "🏠").length +
@@ -175,10 +180,8 @@ function Backup() {
           {v}
         </button>
       ))}
+      <br />
+      <a href = "./titlescreen.html">Back to title</a>
     </>
   );
-}
-
-function App() {
-  return <Backup />;
 }
