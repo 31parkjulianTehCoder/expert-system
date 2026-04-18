@@ -14,7 +14,11 @@ function Backup() {
         (layer1.filter((x) => x === "🎥").length +
           layer2.filter((x) => x === "🎥").length +
           layer3.filter((x) => x === "🎥").length +
-          layer4.filter((x) => x === "🎥").length)) *
+          layer4.filter((x) => x === "🎥").length) +
+        (layer1.filter((x) => x === "🌳").length +
+          layer2.filter((x) => x === "🌳").length +
+          layer3.filter((x) => x === "🌳").length +
+          layer4.filter((x) => x === "🌳").length)) *
         ((layer1.filter((x) => x === "🏠").length +
           layer2.filter((x) => x === "🏠").length +
           layer3.filter((x) => x === "🏠").length +
@@ -26,7 +30,7 @@ function Backup() {
     <>
       <div>
         <button
-          style = {{margin: "5px", padding: "5px", fontSize: "15pt"}}
+          style={{ margin: "5px", padding: "5px", fontSize: "15pt" }}
           onClick={() => {
             setCurrent("🏠");
           }}
@@ -34,7 +38,7 @@ function Backup() {
           Residential
         </button>
         <button
-          style = {{margin: "5px", padding: "5px", fontSize: "15pt"}}
+          style={{ margin: "5px", padding: "5px", fontSize: "15pt" }}
           onClick={() => {
             setCurrent("🛢️");
           }}
@@ -42,7 +46,7 @@ function Backup() {
           Oil Plant
         </button>
         <button
-          style = {{margin: "5px", padding: "5px", fontSize: "15pt"}}
+          style={{ margin: "5px", padding: "5px", fontSize: "15pt" }}
           onClick={() => {
             setCurrent("☀️");
           }}
@@ -50,7 +54,7 @@ function Backup() {
           Solar Farm
         </button>
         <button
-          style = {{margin: "5px", padding: "5px", fontSize: "15pt"}}
+          style={{ margin: "5px", padding: "5px", fontSize: "15pt" }}
           onClick={() => {
             setCurrent("🍴");
           }}
@@ -58,7 +62,7 @@ function Backup() {
           Resturaunt
         </button>
         <button
-          style = {{margin: "5px", padding: "5px", fontSize: "15pt"}}
+          style={{ margin: "5px", padding: "5px", fontSize: "15pt" }}
           onClick={() => {
             setCurrent("🎥");
           }}
@@ -66,7 +70,15 @@ function Backup() {
           Theather
         </button>
         <button
-          style = {{margin: "5px", padding: "5px", fontSize: "15pt"}}
+          style={{ margin: "5px", padding: "5px", fontSize: "15pt" }}
+          onClick={() => {
+            setCurrent("🌳");
+          }}
+        >
+          Green Space
+        </button>
+        <button
+          style={{ margin: "5px", padding: "5px", fontSize: "15pt" }}
           onClick={() => {
             setCurrent("e");
           }}
@@ -74,7 +86,7 @@ function Backup() {
           Erase
         </button>
       </div>
-      <p style = {{margin: "5px", padding: "5px", fontSize: "20pt"}}  >
+      <p style={{ margin: "5px", padding: "5px", fontSize: "20pt" }}>
         Population:{" "}
         {(layer1.filter((x) => x === "🏠").length +
           layer2.filter((x) => x === "🏠").length +
@@ -85,7 +97,11 @@ function Backup() {
         {layer1.filter((x) => x === "☀️").length +
           layer2.filter((x) => x === "☀️").length +
           layer3.filter((x) => x === "☀️").length +
-          layer4.filter((x) => x === "☀️").length -
+          layer4.filter((x) => x === "☀️").length +
+          (layer1.filter((x) => x === "🌳").length +
+            layer2.filter((x) => x === "🌳").length +
+            layer3.filter((x) => x === "🌳").length +
+            layer4.filter((x) => x === "🌳").length) -
           (layer1.filter((x) => x === "🛢️").length +
             layer2.filter((x) => x === "🛢️").length +
             layer3.filter((x) => x === "🛢️").length +
@@ -189,7 +205,7 @@ function Backup() {
         </button>
       ))}
       <br />
-      <a href = "./titlescreen.html">Back to title</a>
+      <a href="./titlescreen.html">Back to title</a>
     </>
   );
 }
