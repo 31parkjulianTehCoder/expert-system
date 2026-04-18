@@ -1,3 +1,8 @@
 function App() {
-  return <h1>Hello, World!</h1>;
+  return(
+    <>
+      <h1>HexaCity: Sustainable City Builder</h1>
+      <Main />
+    </>
+  );
 }
