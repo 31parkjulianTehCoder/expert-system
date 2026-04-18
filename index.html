@@ -8,8 +8,8 @@
 <body>
   <!--react + babel-->
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <script src="./modules/babel.js"></script>
+  <script async src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script async src="./modules/babel.js"></script>
   <!--Hooks-->
   <script>
     const { useEffect, useRef, useState } = React;
@@ -19,7 +19,7 @@
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
   />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script async src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <!--Components-->
   <script type="text/babel" src = "./modules/CDNMap.jsx"></script>
   <script type="text/babel" src = "./verdent.jsx"></script>
@@ -32,6 +32,6 @@
     root.render(<App />);
   </script>
   <noscript>Enable Javascript</noscript>
-    <div id="root"><h1>Please wait...</h1></div>
+  <div id="root"><h1>Please wait...</h1></div>
 </body>
 </html>
