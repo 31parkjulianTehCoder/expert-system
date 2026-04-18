@@ -1,4 +1,4 @@
-const CDNMap = ({ coordinates, zoom = 8 }) => {
+const CDNMap = ({ coordinates, zoom = 5}) => {
   const mapRef = useRef(null);
 
   useEffect(() => {
