@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verdant.js | Precise City</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #e0e0e0; font-family: 'Segoe UI', sans-serif; }
+        #ui {
+            position: absolute; top: 20px; left: 20px;
+            background: rgba(255, 255, 255, 0.9); padding: 20px;
+            border-radius: 15px; box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            pointer-events: auto; border: 1px solid #ccc;
+        }
+        .stat-label { font-size: 0.7rem; color: #666; text-transform: uppercase; font-weight: bold; }
+        .stat-value { font-size: 1.4rem; color: #222; margin-bottom: 10px; font-family: monospace; }
+        #toolbar {
+            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 15px; background: #fff; padding: 15px;
+            border-radius: 50px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            pointer-events: auto;
+        }
+        button {
+            border: none; padding: 12px 20px; border-radius: 25px;
+            cursor: pointer; font-weight: bold; transition: 0.2s;
+            background: #f0f0f0; color: #444;
+        }
+        button.active { background: #00ff88; color: #004422; transform: translateY(-5px); }
+    </style>
+</head>
+<body>
+    <div id="ui">
+        <div class="stat-label">Citizens</div>
+        <div id="pop-stat" class="stat-value">0</div>
+        <div class="stat-label">Grid Load</div>
+        <div id="pwr-stat" class="stat-value" style="color: #00aa55;">0 MW</div>
+    </div>
+
+    <div id="toolbar">
+        <button onclick="setMode('HOUSE', this)" class="active">🏠 Residential</button>
+        <button onclick="setMode('WIND', this)">🌀 Wind Farm</button>
+        <button onclick="setMode('SOLAR', this)">☀️ Solar Field</button>
+        <button onclick="setMode('FOREST', this)">🌲 Urban Forest</button>
+    </div>
+
+    <script type="importmap">
+        { "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+
+        // --- CORE SETTINGS ---
+        let currentMode = 'HOUSE';
+        const buildings = new Map();
+        const CELL_SIZE = 2.5;
+
+        // --- SCENE SETUP ---
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xddeeff); // Soft Sky Blue
+        scene.fog = new THREE.Fog(0xddeeff, 20, 100);
+
+        const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(30, 30, 30);
+        camera.lookAt(0, 0, 0);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        document.body.appendChild(renderer.domElement);
+
+        // --- LIGHTING ---
+        const hemi = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
+        scene.add(hemi);
+
+        const sun = new THREE.DirectionalLight(0xffffff, 1);
+        sun.position.set(10, 50, 10);
+        sun.castShadow = true;
+        scene.add(sun);
+
+        // --- FLOOR GRID ---
+        const planeGeo = new THREE.PlaneGeometry(100, 100);
+        const planeMat = new THREE.MeshStandardMaterial({ color: 0xeeeeee });
+        const floor = new THREE.Mesh(planeGeo, planeMat);
+        floor.rotation.x = -Math.PI / 2;
+        floor.receiveShadow = true;
+        scene.add(floor);
+
+        const grid = new THREE.GridHelper(100, 40, 0xcccccc, 0xdddddd);
+        scene.add(grid);
+
+        // --- INTERACTION ---
+        window.setMode = (m, btn) => {
+            currentMode = m;
+            document.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        };
+
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+
+        window.addEventListener('click', (e) => {
+            mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+            raycaster.setFromCamera(mouse, camera);
+            
+            const intersect = raycaster.intersectObject(floor);
+            if (intersect.length > 0) {
+                const x = Math.round(intersect[0].point.x / CELL_SIZE) * CELL_SIZE;
+                const z = Math.round(intersect[0].point.z / CELL_SIZE) * CELL_SIZE;
+                const key = `${x},${z}`;
+                if (!buildings.has(key)) build(x, z, key);
+            }
+        });
+
+        function build(x, z, key) {
+            let mesh, pwr = 0, pop = 0, anim = null;
+
+            if (currentMode === 'HOUSE') {
+                const group = new THREE.Group();
+                const body = new THREE.Mesh(new THREE.BoxGeometry(1.5, 1.5, 1.5), new THREE.MeshStandardMaterial({color: 0xffffff}));
+                const roof = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.2, 1.6), new THREE.MeshStandardMaterial({color: 0xff5555}));
+                roof.position.y = 0.8;
+                body.castShadow = true;
+                group.add(body, roof);
+                mesh = group; mesh.position.y = 0.75;
+                pop = 20; pwr = -50;
+            } 
+            else if (currentMode === 'WIND') {
+                const group = new THREE.Group();
+                const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.15, 5), new THREE.MeshStandardMaterial({color: 0xaaaaaa}));
+                const blades = new THREE.Mesh(new THREE.BoxGeometry(4, 0.3, 0.1), new THREE.MeshStandardMaterial({color: 0xffffff}));
+                blades.position.y = 2.5;
+                group.add(mast, blades);
+                mesh = group; mesh.position.y = 2.5;
+                anim = blades; pwr = 100;
+            } 
+            else if (currentMode === 'SOLAR') {
+                mesh = new THREE.Mesh(new THREE.BoxGeometry(2, 0.1, 1.5), new THREE.MeshStandardMaterial({color: 0x0066ff, metalness: 0.6, roughness: 0.2}));
+                mesh.rotation.x = -0.4; mesh.position.y = 0.2;
+                pwr = 40;
+            } 
+            else if (currentMode === 'FOREST') {
+                const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.2, 1), new THREE.MeshStandardMaterial({color: 0x442200}));
+                const leaves = new THREE.Mesh(new THREE.SphereGeometry(1, 8, 8), new THREE.MeshStandardMaterial({color: 0x22aa44}));
+                leaves.position.y = 1;
+                const group = new THREE.Group(); group.add(trunk, leaves);
+                mesh = group; mesh.position.y = 0.5;
+                pwr = 10; 
+            }
+
+            mesh.position.x = x; mesh.position.z = z;
+            mesh.castShadow = true;
+            scene.add(mesh);
+            buildings.set(key, { pwr, pop, anim });
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            let totalPwr = 0, totalPop = 0;
+            buildings.forEach(b => {
+                totalPwr += b.pwr; totalPop += b.pop;
+                if (b.anim) b.anim.rotation.z += 0.05;
+            });
+            document.getElementById('pwr-stat').innerText = totalPwr + " MW";
+            document.getElementById('pop-stat').innerText = totalPop;
+            document.getElementById('pwr-stat').style.color = totalPwr < 0 ? "#ff4444" : "#00aa55";
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
