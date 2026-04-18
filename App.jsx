@@ -20,6 +20,8 @@ function App() {
           </button>
         </>
       )}
+      <hr />
+      <h2>CDNMap demo (leaflet)</h2>
       <CDNMap coordinates={[0, 0]} />
     </>
   );
