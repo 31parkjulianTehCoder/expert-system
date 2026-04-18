@@ -22,6 +22,7 @@ function App() {
           >
             Start
           </button>
+          <a href = "./titlescreen.html">Back to title</a>
         </div>
       )}
       {/*
