@@ -1,27 +1,23 @@
-const CDNMap = () => {
+const CDNMap = ({ coordinates, zoom = 13 }) => {
   const mapRef = useRef(null);
 
   useEffect(() => {
-    // Wait for the global L to exist
     if (!window.L) return;
 
-    // Initialize the map
-    const map = window.L.map(mapRef.current).setView([51.505, -0.09], 13);
+    // Initialize map
+    const map = window.L.map(mapRef.current).setView(coordinates, zoom);
 
-    // Add tiles
     window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors',
       maxZoom: 19,
     }).addTo(map);
 
-    // Add a marker
-    window.L.marker([51.505, -0.09]).addTo(map)
-      .bindPopup('Hello! I am a marker.')
+    window.L.marker(coordinates).addTo(map)
+      .bindPopup(`Marker at ${coordinates[0]}, ${coordinates[1]}`)
       .openPopup();
 
-    // Cleanup on unmount
     return () => map.remove();
-  }, []);
+  }, [coordinates, zoom]); // re-run effect if coordinates or zoom change
 
   return <div ref={mapRef} style={{ height: '500px', width: '100%' }} />;
 };
