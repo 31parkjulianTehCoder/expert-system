@@ -11,9 +11,12 @@
 
   <script type="text/babel" src = "./App.jsx"></script>
   <script type="text/babel">
-    const root = ReactDOM.createRoot(document.getElementById('root'));
+    let n = document.getElementById('root')
+    const root = ReactDOM.createRoot(n);
+    n.innerHTML = "";
     root.render(<App />);
   </script>
-    <div id="root"></div>
+  <noscript>Enable Javascript</noscript>
+    <div id="root">Please wait...</div>
 </body>
 </html>
