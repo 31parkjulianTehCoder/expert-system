@@ -8,6 +8,7 @@ function Card() {
         Build a sustainable city and see how environmentally friendly it can be.
       </p>
       <button onClick = {() => {
+        console.log("Changing")
           setVerdentGamePageMode("Game");
       }}>Start</button>
     </>
