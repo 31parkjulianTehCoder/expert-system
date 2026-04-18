@@ -26,7 +26,7 @@ function Backup() {
     <>
       <div>
         <button
-          style = {{margin: "5px", padding: "5px"}}
+          style = {{margin: "5px", padding: "5px", fontSize: "15pt"}}
           onClick={() => {
             setCurrent("🏠");
           }}
@@ -34,7 +34,7 @@ function Backup() {
           Residential
         </button>
         <button
-          style = {{margin: "5px", padding: "5px"}}
+          style = {{margin: "5px", padding: "5px", fontSize: "15pt"}}
           onClick={() => {
             setCurrent("🛢️");
           }}
@@ -42,7 +42,7 @@ function Backup() {
           Oil Plant
         </button>
         <button
-          style = {{margin: "5px", padding: "5px"}}
+          style = {{margin: "5px", padding: "5px", fontSize: "15pt"}}
           onClick={() => {
             setCurrent("☀️");
           }}
@@ -50,7 +50,7 @@ function Backup() {
           Solar Farm
         </button>
         <button
-          style = {{margin: "5px", padding: "5px"}}
+          style = {{margin: "5px", padding: "5px", fontSize: "15pt"}}
           onClick={() => {
             setCurrent("🍴");
           }}
@@ -58,12 +58,20 @@ function Backup() {
           Resturaunt
         </button>
         <button
-          style = {{margin: "5px", padding: "5px"}}
+          style = {{margin: "5px", padding: "5px", fontSize: "15pt"}}
           onClick={() => {
             setCurrent("🎥");
           }}
         >
           Theather
+        </button>
+        <button
+          style = {{margin: "5px", padding: "5px", fontSize: "15pt"}}
+          onClick={() => {
+            setCurrent("e");
+          }}
+        >
+          Erase
         </button>
       </div>
       <p style = {{margin: "5px", padding: "5px", fontSize: "20pt"}}  >
@@ -108,6 +116,7 @@ function Backup() {
       {layer1.map((v, i) => (
         <button
           style={{
+            fontSize: "20pt",
             padding: 5,
             height: 100,
             width: v === "!" ? 50 : 100,
@@ -117,7 +126,6 @@ function Backup() {
             let temp = [...layer1];
             temp[i] = current;
             setLayer1(temp);
-            setCurrent("e");
           }}
         >
           {v}
@@ -127,6 +135,7 @@ function Backup() {
       {layer2.map((v, i) => (
         <button
           style={{
+            fontSize: "20pt",
             padding: 5,
             height: 100,
             width: v === "!" ? 50 : 100,
@@ -136,7 +145,6 @@ function Backup() {
             let temp = [...layer2];
             temp[i] = current;
             setLayer2(temp);
-            setCurrent("e");
           }}
         >
           {v}
@@ -146,6 +154,7 @@ function Backup() {
       {layer3.map((v, i) => (
         <button
           style={{
+            fontSize: "20pt",
             padding: 5,
             height: 100,
             width: v === "!" ? 50 : 100,
@@ -155,7 +164,6 @@ function Backup() {
             let temp = [...layer3];
             temp[i] = current;
             setLayer3(temp);
-            setCurrent("e");
           }}
         >
           {v}
@@ -165,6 +173,7 @@ function Backup() {
       {layer4.map((v, i) => (
         <button
           style={{
+            fontSize: "20pt",
             padding: 5,
             height: 100,
             width: v === "!" ? 50 : 100,
@@ -174,7 +183,6 @@ function Backup() {
             let temp = [...layer4];
             temp[i] = current;
             setLayer4(temp);
-            setCurrent("e");
           }}
         >
           {v}
