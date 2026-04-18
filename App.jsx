@@ -13,6 +13,7 @@ function App() {
             Build a sustainable city and see how environmentally friendly it can
             be.
           </p>
+          <p style = {{color: "green"}}>Easy Mode is enabled. You'll have less objectives and a simpler editor.</p>
           <button
             onClick={() => {
               setStarted(true);
