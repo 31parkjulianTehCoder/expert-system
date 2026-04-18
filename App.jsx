@@ -7,7 +7,7 @@ function App() {
       {gameStarted ? (
         <Main />
       ) : (
-        <div className = "initial">
+        <div className = "default">
           <h1>Verdent: Sustainable City Builder</h1>
           <p>
             Build a sustainable city and see how environmentally friendly it can
