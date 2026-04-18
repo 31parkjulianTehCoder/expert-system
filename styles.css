@@ -3,6 +3,10 @@
     font-family: Helvetica, sans-serif;
 }
 
+.default {
+    margin: initial; padding: initial; 
+}
+
 .tile {
     width: 100px;
     height: 86.6px;
