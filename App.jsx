@@ -1,7 +1,7 @@
 function App() {
   return(
     <>
-      <h1>HexaCity: Sustainable City Builder</h1>
+      <h1>Verdent: Sustainable City Builder</h1>
       <Main />
     </>
   );
