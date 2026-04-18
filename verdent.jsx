@@ -1,59 +1,3 @@
-/*function Main(){
-    function updateState(i) {
-        let cpy = [...sBoard]; cpy[y * width + x] = 0;
-        setSBoard(cpy);
-    }
-
-
-    let view2 = [];
-
-    //
-    // for (let i = 0; i < width * height; ++i){
-    //     if (i % (width * 2) === 0 ) { console.log(i); toRender.push(<div style={{width: "100%", height: "100%", /*border: "1px solid black", backgroundColor: "red"}}></div>); }
-    //     toRender.push(<div style={{width: "100%", height: "100%", border: "4px outset black", backgroundColor: "dodgerblue", gridColumn: "span 2"}}>{sBoard[i]}</div>);
-    //     if (i % (width * 2) === width * 2 -1 ) { console.log(i); toRender.push(<div style={{width: "100%", height: "100%", /*border: "1px solid black", backgroundColor: "red"}}></div>); }
-    // }
-
-    let [TZ, setTZ] = useState(0);
-
-
-    let zHeight = 3;
-    let width = 3;
-    let height = 3;
-    let [board, setBoard] = useState([1, 2, 3, 1, 2, 3, 1, 2, 3, "😎", 5, 6, 4, 5, 6, 4, 5, 6, 7, 8, 9, 7, 8, 9, 7, 8, 9]);
-
-    let toRender = [];
-    for (let z = 0; z < zHeight; ++z){
-        let ITR = []; // use new array later
-        for (let i = z * width * height; i < (z + 1 ) * width * height; ++i) {
-            ITR.push(<div className="tile">{board[i]}</div>)
-        }
-
-        toRender.push(<div style={{
-            transform: "rotate(30deg)",
-            // backgroundColor: "lightgray",
-            display: "grid",
-            gridTemplateColumns: `repeat(${width}, 100px`,
-            gridTemplateRows: `repeat(${width}, 1fr`,
-            border: "1px solid black",
-            width: "300px",
-        }}>
-            {ITR}
-        </div>);
-    }
-
-  return (
-    <div style = {{ margin: 0, padding: 0, boxSizing: "border-box", fontFamily: "sans-serif",}}>
-        <div style={{width: "100vw", height: "30px", backgroundColor: "teal", color: "gold", textAlign: "center"}}>Hexacity</div>
-        <div style={{position: "fixed", left: "30px", top: "60px", width: "100px", backgroundColor: ""}}>
-
-        {toRender}
-        </div>
-    </div>
-  )
-}
-*/
-
 function Main(){
     
 
@@ -75,7 +19,7 @@ function Main(){
     for (let z = 0; z < zHeight; ++z){
         let ITR = []; // use new array later
         for (let i = z * width * height; i < (z + 1 ) * width * height; ++i) {
-            ITR.push(<div className="tile">{board[i]}</div>)
+            ITR.push(<div onClick = {() => {alert("test")}}className="tile">{board[i]}</div>)
         }
 
         toRender.push(<div style={{
