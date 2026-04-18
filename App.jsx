@@ -3,7 +3,7 @@ function App() {
     <>
       <h1>Verdent: Sustainable City Builder</h1>
       <Main />
-      <CDNMap coordinates = [0,0] />
+      <CDNMap coordinates = {[0,0]} />
     </>
   );
 }
