@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verdant - Start Game</title>
+    <style>
+    :root {
+        --bg-center: #1a2e1a;
+        --bg-edge: #050805;
+        --emerald: #2d5a27;
+        --moss: #4a7c44;
+        --gold: #d4af37;
+        --ivory: #f0ead6;
+        --deep-green: #0a1a0a;
+        --vignette-color: rgba(0, 0, 0, 0.9);
+    }
+
+    body.hard-mode-active {
+        --bg-center: #2e1a1a;   
+        --bg-edge: #0a0505;     
+        --emerald: #5a2727; 
+        --moss: #7c4444;    
+        --gold: #ff4d4d;        
+        --vignette-color: rgba(60, 0, 0, 0.7);
+    }
+
+    body, html {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        font-family: 'Georgia', serif;
+        background-color: var(--bg-edge);
+        background-image: radial-gradient(circle, var(--bg-center) 0%, var(--bg-edge) 100%);
+        background-attachment: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        color: var(--ivory);
+        transition: all 0.8s ease; 
+    }
+
+    .vignette {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        box-shadow: inset 0 0 150px var(--vignette-color);
+        pointer-events: none;
+        z-index: 2;
+        transition: box-shadow 0.8s ease;
+    }
+
+    .container {
+        text-align: center;
+        z-index: 10;
+        transition: all 0.5s ease;
+    }
+
+    h1 {
+        font-size: 5rem;
+        letter-spacing: 0.8rem;
+        margin-bottom: 0;
+        text-transform: uppercase;
+        color: var(--ivory);
+        text-shadow: 0 0 30px var(--emerald);
+        animation: breathe 5s ease-in-out infinite;
+        transition: text-shadow 0.8s ease;
+    }
+
+    .subtitle {
+        font-style: italic;
+        font-size: 1rem;
+        color: var(--moss);
+        margin-bottom: 4rem;
+        letter-spacing: 0.3rem;
+        transition: color 0.8s ease;
+    }
+
+    .btn {
+        background: none;
+        border: 1px solid var(--moss);
+        color: var(--ivory);
+        padding: 15px 50px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        width: 250px;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.15rem;
+        border-radius: 12px;
+    }
+
+    .btn:hover {
+        color: var(--gold);
+        border-color: var(--gold);
+        box-shadow: 0 0 20px var(--emerald);
+    }
+    #settings-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        z-index: 100;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    #settings-overlay.active {
+        display: flex;
+        opacity: 1;
+    }
+
+    .custom-checkbox {
+        width: 20px;
+        height: 20px;
+        border: 2px solid var(--moss);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .custom-checkbox.checked::after {
+        content: '✕';
+        color: var(--gold);
+        font-weight: bold;
+    }
+
+    @keyframes breathe {
+        0%, 100% { transform: scale(1); opacity: 0.8; }
+        50% { transform: scale(1.03); opacity: 1; }
+    }
+</style>
+</head>
+<body>
+
+    <div class="vignette"></div>
+
+    <div class="container" id="main-menu">
+        <h1>VERDANT</h1>
+        <div class="subtitle">Build a sustainable city</div>
+        
+        <div class="menu">
+            <button class="btn" onclick="startGame()">Play</button>
+            <button class="btn" onclick="toggleSettings(true)">Difficulty</button>
+        </div>
+    </div>
+
+    <div id="settings-overlay">
+        <div class="settings-content">
+    <h2>DIFFICULTY</h2>
+    
+    <div class="setting-item" onclick="selectDifficulty('easy')">
+    <span>Easy Mode</span>
+    <div class="custom-checkbox checked" id="check-easy"></div>
+</div>
+
+<div class="setting-item" onclick="selectDifficulty('hard')">
+    <span>Hard Mode</span>
+    <div class="custom-checkbox" id="check-hard"></div>
+</div>
+
+    <div class="setting-item">
+    </div>
+
+    <div style="text-align: center; margin-top: 3rem;">
+        <button class="btn" onclick="toggleSettings(false)">Back</button>
+    </div>
+</div>
+    </div>
+
+    <script>
+        const mainMenu = document.getElementById('main-menu');
+        const settingsOverlay = document.getElementById('settings-overlay');
+
+        function toggleSettings(show) {
+            if (show) {
+                settingsOverlay.style.display = 'flex';
+                setTimeout(() => {
+                    settingsOverlay.classList.add('active');
+                    mainMenu.classList.add('blur-effect');
+                }, 10);
+            } else {
+                settingsOverlay.classList.remove('active');
+                mainMenu.classList.remove('blur-effect');
+                setTimeout(() => {
+                    settingsOverlay.style.display = 'none';
+                }, 400); 
+            }
+        }
+
+        function startGame() {
+            mainMenu.style.opacity = '0';
+            mainMenu.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                alert("Entering the Verdant world...");
+                if (currentDifficulty == "easy"){
+                    window.open("https://31parkjulianTehCoder.github.io/expert-system", "_self")
+                }
+            }, 1000);
+        }
+    </script>
+<script>
+let currentDifficulty = 'easy'; 
+
+function selectDifficulty(mode) {
+    const easyBox = document.getElementById('check-easy');
+    const hardBox = document.getElementById('check-hard');
+    const settingsOverlay = document.getElementById('settings-overlay');
+    const body = document.body; 
+
+    if (mode === 'easy') {
+        easyBox.classList.add('checked');
+        hardBox.classList.remove('checked');
+        
+        settingsOverlay.classList.remove('hard-mode');
+        body.classList.remove('hard-mode-active');
+        
+        currentDifficulty = 'easy';
+    } else {
+        hardBox.classList.add('checked');
+        easyBox.classList.remove('checked');
+        
+        settingsOverlay.classList.add('hard-mode');
+        body.classList.add('hard-mode-active');
+        
+        currentDifficulty = 'hard';
+    }
+    
+    console.log("Global State:", currentDifficulty.toUpperCase());
+}
+</script>
+</body>
+</html>
+
