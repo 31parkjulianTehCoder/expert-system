@@ -19,7 +19,7 @@ function Main(){
     for (let z = 0; z < zHeight; ++z){
         let ITR = []; // use new array later
         for (let i = z * width * height; i < (z + 1 ) * width * height; ++i) {
-            ITR.push(<div onClick = {() => {board[i] = prompt("update"))}}className="tile">{board[i]}</div>)
+            ITR.push(<div onClick = {() => {board[i] = prompt("update")}}className="tile">{board[i]}</div>)
         }
 
         toRender.push(<div style={{
