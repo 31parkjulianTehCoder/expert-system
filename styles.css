@@ -16,6 +16,8 @@
     border-radius: 10px;
     transform: skew(-31.5deg);
     transition-duration: 0.1s;
+
+    color: lightblue
 }
 
 .tile:hover {
