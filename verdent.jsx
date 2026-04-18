@@ -43,7 +43,7 @@ function Main(){
     }
 
   return (
-    <div style = {{ margin: 0, padding: 0, boxSizing: "border-box", fontFamily: "sans-serif",}}>
+    <Fragment style = {{ margin: 0, padding: 0, boxSizing: "border-box", fontFamily: "sans-serif",}}>
         {/*<button onClick={ () => updateState(0, 0) }>us</button>*/}
         <div style={{width: "100vw", height: "30px", backgroundColor: "teal", color: "gold", textAlign: "center"}}>Hexacity</div>
         <div style={{position: "fixed", left: "30px", top: "60px", width: "100px", backgroundColor: ""}}>
@@ -66,6 +66,6 @@ function Main(){
 
         {toRender}
         </div>
-    </div>
+    </Fragment>
   )
 }
