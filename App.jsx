@@ -8,7 +8,7 @@ function App() {
       {gameStarted ? (
         competitive ? <Backup /> : <Main />
       ) : (
-        <div className = "default" style = {{margin: "5px", padding: "5px"}}>
+        <div className = "default" style = {{margin: "5px", padding: "5px", textAlign: "center"}}>
           <h1 style = {{margin: "5px", padding: "5px"}}>Verdent: Sustainable City Builder</h1>
           <p style = {{margin: "5px", padding: "5px"}}>
             Build a sustainable city and see how environmentally friendly it can
