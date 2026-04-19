@@ -35,7 +35,7 @@ function Backup() {
           findOccurences("🌳") * 25000 +
           findOccurences("🎥") * 25000 +
           findOccurences("🍴") * 25000) +
-        happiness * 2
+        happiness * 100
     );
   });
   return (
