@@ -166,7 +166,7 @@
             document.getElementById('pwr-stat').innerText = totalPwr + " MW";
             document.getElementById('pop-stat').innerText = totalPop;
             document.getElementById('pwr-stat').style.color = totalPwr < 0 ? "#ff4444" : "#00aa55";
-            document.getElementbyId('crb-stat').innerText = totalCrb + "PTS"
+            document.getElementById('crb-stat').innerText = totalCrb + "PTS";
             renderer.render(scene, camera);
         }
         animate();
