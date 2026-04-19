@@ -102,11 +102,11 @@ function Main(){
                         <div>Temperature: 23°F/45°C </div>
                             <input type={"range"} min={"0"} max={"86400000"} defaultValue={"43200000"} className={"DS"}/>
                         <div style={{width: "100%", height: 40, display: "flex", flexFlow: "row nowrap"}}>
-                            <img onClick={() => setSimDate(new Date(simDate.getTime() - 86400000))}  src="/assets/fast_minus.svg" className="TB"/>
-                            <img onClick={() => setSimDate(new Date(simDate.getTime() - 10800000))}  src="/assets/slow_minus.svg" className="TB"/>
-                            <img src="/assets/play.svg" className="TB"/>
-                            <img onClick={() => setSimDate(new Date(simDate.getTime() + 10800000))}  src="/assets/slow_plus.svg" className="TB"/>
-                            <img onClick={() => setSimDate(new Date(simDate.getTime() + 86400000))}  src="/assets/fast_plus.svg" className="TB"/>
+                            <img onClick={() => setSimDate(new Date(simDate.getTime() - 86400000))}  src="./assets/fast_minus.svg" className="TB"/>
+                            <img onClick={() => setSimDate(new Date(simDate.getTime() - 10800000))}  src="./assets/slow_minus.svg" className="TB"/>
+                            <img src="./assets/play.svg" className="TB"/>
+                            <img onClick={() => setSimDate(new Date(simDate.getTime() + 10800000))}  src="./assets/slow_plus.svg" className="TB"/>
+                            <img onClick={() => setSimDate(new Date(simDate.getTime() + 86400000))}  src="./assets/fast_plus.svg" className="TB"/>
                         </div>
 
                     </div>
