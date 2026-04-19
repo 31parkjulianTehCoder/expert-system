@@ -3,24 +3,52 @@
     font-family: Helvetica, sans-serif;
 }
 
-.default {
-    margin: initial; padding: initial; 
-}
-
 .tile {
     width: 100px;
     height: 86.6px;
-    background-color: dodgerblue;
+    background-color: lightgray;
+    opacity: 50%;
     border-right: 10px solid gray;
     border-bottom: 10px solid gray;
     border-radius: 10px;
     transform: skew(-31.5deg);
     transition-duration: 0.1s;
 
-    color: lightblue
+
+    cursor: context-menu;
 }
 
 .tile:hover {
-    background-color: royalblue;
-    transform: translate(5px);
+    /*background-color: royalblue;*/
+    box-shadow: 4px 4px 4px lightcyan;
+    border: 10px solid lightcyan;
+}
+
+.selectedTile {
+    width: 100px;
+    height: 86.6px;
+    background-color: lightgray;
+    opacity: 50%;
+    box-shadow: 4px 4px 4px lightseagreen;
+    border: 10px solid lightseagreen;
+    border-radius: 10px;
+    transform: skew(-31.5deg);
+    transition-duration: 0.1s;
+
+    cursor: default;
+}
+
+
+.timeButton {
+    width: 50px;
+    border-radius: 8px;
+    background-color: #fff2;
+    transition: 0.1s;
+}
+
+.timeButton:hover {
+    border-bottom: 6px solid rgba(224, 255, 255, 0.2);
+}
+.timeButton:active {
+    border-bottom: 6px solid rgba(32, 178, 170, 0.2);
 }
