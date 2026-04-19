@@ -59,7 +59,7 @@ function Main(){
         <div style={{width: "100vw", height: "30px", backgroundColor: "teal", color: "gold", textAlign: "center"}}>Hexacity</div>
         {/*<div style={{height: "200px"}}></div>*/}
         <p style={{}}>{ `EcoBuilding 1402-A / ${zHeight - sTile.z > 1 ? `Lvl. ${zHeight - sTile.z - 1}` : "Ground Fl."} / Module ${sTile.x +1 }:${sTile.y +1 }`}</p>
-        <div style={{height: "calc(100vh - 30px)", backgroundImage: "url('/assets/bg.jpg')", backgroundSize: "cover", backgroundPosition: "center"}}>
+        <div style={{height: "calc(100vh - 30px)", backgroundImage: "url('./assets/bg.jpg')", backgroundSize: "cover", backgroundPosition: "center"}}>
 
             <div style={{height: "100%", width: "100%", display: "flex", flexDirection: "row", alignItems: "flex-start", backdropFilter: "blur(10px) grayscale(50%) contrast(20%)"}}>
                 <div style={{border: "1px solid teal", height: "100%", width: "575px", overflow: "scroll"}}>
