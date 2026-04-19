@@ -1,5 +1,5 @@
 function Backup() {
-  const SpeedrunTimer = () => {
+  /*const SpeedrunTimer = () => {
     const [time, setTime] = useState(0); // milliseconds
     const [isRunning, setIsRunning] = useState(false);
     const intervalRef = useRef(null);
@@ -82,6 +82,7 @@ function Backup() {
       </div>
     );
   };
+  */
   let [current, setCurrent] = useState("e");
   let [layer1, setLayer1] = useState(["e", "e", "e", "e", "e", "e"]);
   let [layer2, setLayer2] = useState(["!", "e", "e", "e", "e", "e", "e"]);
