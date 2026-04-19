@@ -158,14 +158,15 @@
 
         function animate() {
             requestAnimationFrame(animate);
-            let totalPwr = 0, totalPop = 0;
+            let totalPwr = 0, totalPop = 0, totalCrb = 0;
             buildings.forEach(b => {
-                totalPwr += b.pwr; totalPop += b.pop;
+                totalPwr += b.pwr; totalPop += b.pop; totalCrb += b.crb
                 if (b.anim) b.anim.rotation.z += 0.05;
             });
             document.getElementById('pwr-stat').innerText = totalPwr + " MW";
             document.getElementById('pop-stat').innerText = totalPop;
             document.getElementById('pwr-stat').style.color = totalPwr < 0 ? "#ff4444" : "#00aa55";
+            document.getElementbyId('crb-stat').innerText = totalCrb + "PTS"
             renderer.render(scene, camera);
         }
         animate();
