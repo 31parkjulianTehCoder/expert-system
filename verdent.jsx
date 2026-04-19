@@ -113,7 +113,7 @@ function Main(){
                             const decoder = new TextDecoder("utf-8");
                             const text = decoder.decode(buffer);
                             const chars = Array.from(text);
-                            
+
                             setTS(chars);
                         };
 
