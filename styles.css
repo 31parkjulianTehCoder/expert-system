@@ -66,10 +66,25 @@
     cursor: pointer;
     background: #fff2;
     transition-duration: 0.1s;
+    height: 20px;
 }
 
 .DS:hover {
     background: #fff6;
+}
+
+.DS::-webkit-slider-thumb {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background-color: lightgray;
+    border-radius: 9px;
+}
+.DS::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background-color: lightgray;
+    pointer-events: none;
 }
 
 .pButton {
@@ -101,4 +116,10 @@
 }
 .twoTile:active {
     background-color: #fff4;
+}
+.fButton {
+    cursor: pointer;
+}
+.fButton:hover {
+    background-color: #fff2;
 }
