@@ -1,4 +1,67 @@
 function Backup() {
+  const SpeedrunTimer = () => {
+    const [time, setTime] = useState(0); // time in milliseconds
+    const [isRunning, setIsRunning] = useState(false);
+    const intervalRef = useRef(null);
+  
+    // Format time as mm:ss:ms
+    const formatTime = (ms) => {
+      const minutes = Math.floor(ms / 60000);
+      const seconds = Math.floor((ms % 60000) / 1000);
+      const milliseconds = Math.floor((ms % 1000) / 10);
+      return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+        2,
+        "0"
+      )}:${String(milliseconds).padStart(2, "0")}`;
+    };
+  
+    // Start or stop the timer
+    const toggleTimer = () => {
+      if (isRunning) {
+        clearInterval(intervalRef.current);
+        setIsRunning(false);
+      } else {
+        const start = Date.now() - time;
+        intervalRef.current = setInterval(() => {
+          setTime(Date.now() - start);
+        }, 10); // update every 10ms
+        setIsRunning(true);
+      }
+    };
+  
+    // Reset the timer
+    const resetTimer = () => {
+      clearInterval(intervalRef.current);
+      setTime(0);
+      setIsRunning(false);
+    };
+  
+    // Cleanup interval on unmount
+    useEffect(() => {
+      return () => clearInterval(intervalRef.current);
+    }, []);
+  
+    return (
+      <div style={{ textAlign: "center", fontFamily: "sans-serif" }}>
+        <h1>Speedrun Timer</h1>
+        <div
+          style={{
+            fontSize: "3rem",
+            marginBottom: "20px",
+            fontVariantNumeric: "tabular-nums",
+          }}
+        >
+          {formatTime(time)}
+        </div>
+        <button onClick={toggleTimer} style={{ marginRight: "10px", padding: "10px 20px" }}>
+          {isRunning ? "Stop" : "Start"}
+        </button>
+        <button onClick={resetTimer} style={{ padding: "10px 20px" }}>
+          Reset
+        </button>
+      </div>
+    );
+  };
   let [current, setCurrent] = useState("e");
   let [layer1, setLayer1] = useState(["e", "e", "e", "e", "e", "e"]);
   let [layer2, setLayer2] = useState(["!", "e", "e", "e", "e", "e", "e"]);
@@ -28,6 +91,8 @@ function Backup() {
   });
   return (
     <>
+      <SpeedrunTimer />
+      <br />
       <div>
         <button
           style={{ margin: "5px", padding: "5px", fontSize: "15pt" }}
