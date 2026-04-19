@@ -148,7 +148,7 @@ function Main(){
                         <div style={{width: "100%", height: 40, display: "flex", flexFlow: "row nowrap"}}>
                             <img onClick={() => setSimDate(new Date(simDate.getTime() - 86400000))}  src="./assets/fast_minus.svg" className="TB"/>
                             <img onClick={() => setSimDate(new Date(simDate.getTime() - 10800000))}  src="./assets/slow_minus.svg" className="TB"/>
-                            <img src="/assets/play.svg" className="TB"/>
+                            <img src="./assets/play.svg" className="TB"/>
                             <img onClick={() => setSimDate(new Date(simDate.getTime() + 10800000))}  src="./assets/slow_plus.svg" className="TB"/>
                             <img onClick={() => setSimDate(new Date(simDate.getTime() + 86400000))}  src="./assets/fast_plus.svg" className="TB"/>
                         </div>
