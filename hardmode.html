@@ -34,7 +34,7 @@
         <div class="stat-label">Grid Load</div>
         <div id="pwr-stat" class="stat-value" style="color: #00aa55;">0 MW</div>
         <div class="stat-label">Carbon Score</div>
-        <div id="pwr-stat" class="stat-value" style="color: #000000;">0 PTS</div>
+        <div id="crb-stat" class="stat-value" style="color: #000000;">0 PTS</div>
     </div>
 
     <div id="toolbar">
@@ -125,7 +125,7 @@
                 body.castShadow = true;
                 group.add(body, roof);
                 mesh = group; mesh.position.y = 0.75;
-                pop = 20; pwr = -50;
+                pop = 20; pwr = -50; ;crb = -25;
             } 
             else if (currentMode === 'WIND') {
                 const group = new THREE.Group();
@@ -134,12 +134,12 @@
                 blades.position.y = 2.5;
                 group.add(mast, blades);
                 mesh = group; mesh.position.y = 2.5;
-                anim = blades; pwr = 100;
+                anim = blades; pwr = 100; crb = 30;
             } 
             else if (currentMode === 'SOLAR') {
                 mesh = new THREE.Mesh(new THREE.BoxGeometry(2, 0.1, 1.5), new THREE.MeshStandardMaterial({color: 0x0066ff, metalness: 0.6, roughness: 0.2}));
                 mesh.rotation.x = -0.4; mesh.position.y = 0.2;
-                pwr = 40;
+                pwr = 40; crb = 26;
             } 
             else if (currentMode === 'FOREST') {
                 const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.2, 1), new THREE.MeshStandardMaterial({color: 0x442200}));
@@ -147,7 +147,7 @@
                 leaves.position.y = 1;
                 const group = new THREE.Group(); group.add(trunk, leaves);
                 mesh = group; mesh.position.y = 0.5;
-                pwr = 10; 
+                pwr = 0; crb = 15;
             }
 
             mesh.position.x = x; mesh.position.z = z;
