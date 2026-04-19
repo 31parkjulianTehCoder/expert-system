@@ -1,0 +1,117 @@
+Omkar Vasisht, Now
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verdant.js | Sustainable Future</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #050a05;
+            color: white;
+            overflow-x: hidden;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .btn-play {
+            background: linear-gradient(90deg, #00ff88, #00bdff);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-play:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(0, 255, 136, 0.6);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at top right, #1a2e1a, #000000);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed top-0 w-full z-50 glass border-b border-white/10">
+        <div class="max-w-7xl mx-auto flex justify-between items-center p-6">
+            <div class="text-2xl font-black tracking-tighter text-emerald-400">VERDANT<span class="text-white">.JS</span></div>
+            <div class="hidden md:flex gap-10 text-xs font-bold uppercase tracking-widest opacity-70">
+                <a href="#about" class="hover:text-emerald-400 transition">About Us</a>
+                <a href="#overview" class="hover:text-emerald-400 transition">Overview</a>
+                <a href="#play" class="hover:text-emerald-400 transition text-emerald-400">Play Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-gradient min-h-screen flex flex-col items-center justify-center pt-20 px-6 text-center">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#00ff88 1px, transparent 1px); background-size: 50px 50px;"></div>
+        
+        <h1 class="text-6xl md:text-8xl font-black tracking-tighter mb-6 leading-none">
+            ENGINEERING <br>A <span class="text-emerald-400">GREENER</span> GRID.
+        </h1>
+        <p class="text-xl text-emerald-100/60 max-w-2xl mx-auto mb-12">
+            Verdant.js provides the data and simulation tools needed to visualize, build, and optimize the zero-emission cities of tomorrow.
+        </p>
+        <a href="#play" class="btn-play text-black font-black px-12 py-5 rounded-full text-xl uppercase tracking-widest">
+            Enter Simulation
+        </a>
+    </section>
+
+    <section id="about" class="max-w-5xl mx-auto px-6 py-32 border-t border-white/5">
+        <div class="grid md:grid-cols-2 gap-20 items-center">
+            <div>
+                <h2 class="text-4xl font-bold mb-6 text-emerald-400 italic">About Us</h2>
+                <p class="text-emerald-100/70 leading-relaxed mb-6">
+                    We are team Advanced Hand Sanitizer, the creators of Verdant. At a school-wide competition, three of our future members had Cheeto dust all over our fingers after snacking too much. Another one of our future members had hand sanitizer, and after asking him for hand sanitizer, we started bonding over our love of computer science. For the 2026 OCSEF Hackathon, we created Verdant: a game about building a sustainable city.
+                </p>
+            </div>
+            <div class="glass p-8 rounded-3xl border-emerald-500/20">
+                <div class="text-emerald-400 font-mono text-sm mb-4">LOG_STATUS: ACTIVE</div>
+                <div class="space-y-4">
+                    <div class="h-2 w-full bg-emerald-500/20 rounded"></div>
+                    <div class="h-2 w-3/4 bg-emerald-500/20 rounded"></div>
+                    <div class="h-2 w-1/2 bg-emerald-500/20 rounded"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="overview" class="bg-black/40 py-32 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-16">System Overview</h2>
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="p-10 glass rounded-3xl">
+                    <h3 class="text-xl font-bold text-emerald-400 mb-4">Resource Logic</h3>
+                    <p class="opacity-60 text-sm leading-relaxed">Manage dynamic power grids where population density directly impacts energy consumption and carbon levels.</p>
+                </div>
+                <div class="p-10 glass rounded-3xl">
+                    <h3 class="text-xl font-bold text-emerald-400 mb-4">Precision 3D</h3>
+                    <p class="opacity-60 text-sm leading-relaxed">Built on a customized Three.js kernel, simulating physical light, shadows, and aerodynamic wind turbine mechanics.</p>
+                </div>
+                <div class="p-10 glass rounded-3xl">
+                    <h3 class="text-xl font-bold text-emerald-400 mb-4">Eco-Metrics</h3>
+                    <p class="opacity-60 text-sm leading-relaxed">Every structure is benchmarked against real-world sustainability goals, from Singapore's forestry to Iceland's thermal energy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <section id="play" class="max-w-7xl mx-auto px-6 py-40 text-center">
+    <div class="glass p-16 rounded-[4rem] border-emerald-500/30" style="position: relative; z-index: 1000;">
+        <h2 class="text-5xl font-black mb-8">Ready to Build?</h2>
+        <p class="text-emerald-100/60 mb-12 max-w-xl mx-auto">
+            Step into the simulation and start designing your carbon-neutral city.
+        </p>
+        
+        <a href="https://31parkjuliantehcoder.github.io/expert-system/titlescreen.html" 
+           target="_blank"
+           style="background: linear-gradient(90deg, #00ff88, #00bdff); display: inline-block;"
+           class="text-black font-black px-16 py-6 rounded-full text-2xl uppercase tracking-widest pointer-events-auto">
+            Open Simulation
+        </a>
+    </div>
+</section>
