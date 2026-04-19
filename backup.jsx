@@ -1,6 +1,6 @@
 function Backup() {
   const SpeedrunTimer = () => {
-    const [time, setTime] = useState(0); // time in milliseconds
+    const [time, setTime] = useState(0); // milliseconds
     const [isRunning, setIsRunning] = useState(false);
     const intervalRef = useRef(null);
   
@@ -8,15 +8,18 @@ function Backup() {
     const formatTime = (ms) => {
       const minutes = Math.floor(ms / 60000);
       const seconds = Math.floor((ms % 60000) / 1000);
-      const milliseconds = Math.floor((ms % 1000) / 10);
+      const hundredths = Math.floor((ms % 1000) / 10);
       return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
         2,
         "0"
-      )}:${String(milliseconds).padStart(2, "0")}`;
+      )}:${String(hundredths).padStart(2, "0")}`;
     };
   
-    // Start or stop the timer
-    const toggleTimer = () => {
+    // Start or stop timer
+    const toggleTimer = (e) => {
+      e.preventDefault(); // prevent accidental form submit
+      e.stopPropagation(); // prevent click propagation
+  
       if (isRunning) {
         clearInterval(intervalRef.current);
         setIsRunning(false);
@@ -24,41 +27,58 @@ function Backup() {
         const start = Date.now() - time;
         intervalRef.current = setInterval(() => {
           setTime(Date.now() - start);
-        }, 10); // update every 10ms
+        }, 10);
         setIsRunning(true);
       }
     };
   
-    // Reset the timer
-    const resetTimer = () => {
+    // Reset timer
+    const resetTimer = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+  
       clearInterval(intervalRef.current);
       setTime(0);
       setIsRunning(false);
     };
   
-    // Cleanup interval on unmount
+    // Cleanup on unmount
     useEffect(() => {
       return () => clearInterval(intervalRef.current);
     }, []);
   
     return (
-      <div style={{ textAlign: "center", fontFamily: "sans-serif" }}>
-        <h1>Speedrun Timer</h1>
+      <div
+        style={{
+          display: "inline-block",
+          padding: "20px",
+          border: "2px solid #444",
+          borderRadius: "8px",
+          textAlign: "center",
+          userSelect: "none", // prevent accidental selection
+        }}
+      >
+        <h2 style={{ margin: "0 0 10px 0" }}>Speedrun Timer</h2>
         <div
           style={{
-            fontSize: "3rem",
-            marginBottom: "20px",
+            fontSize: "2.5rem",
             fontVariantNumeric: "tabular-nums",
+            marginBottom: "15px",
           }}
         >
           {formatTime(time)}
         </div>
-        <button onClick={toggleTimer} style={{ marginRight: "10px", padding: "10px 20px" }}>
-          {isRunning ? "Stop" : "Start"}
-        </button>
-        <button onClick={resetTimer} style={{ padding: "10px 20px" }}>
-          Reset
-        </button>
+        <div>
+          <button
+            onClick={toggleTimer}
+            style={{ marginRight: "10px", padding: "8px 16px" }}
+          >
+            {isRunning ? "Stop" : "Start"}
+          </button>
+          <button onClick={resetTimer} style={{ padding: "8px 16px" }}>
+            Reset
+          </button>
+        </div>
       </div>
     );
   };
