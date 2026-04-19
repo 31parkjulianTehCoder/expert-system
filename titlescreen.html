@@ -154,6 +154,7 @@
         <div class="menu">
             <button class="btn" onclick="startGame()">Play</button>
             <button class="btn" onclick="toggleSettings(true)">Difficulty</button>
+            <button class="btn" onClick="aboutUs()">About Us</button>
         </div>
     </div>
 
@@ -198,6 +199,10 @@
                     settingsOverlay.style.display = 'none';
                 }, 400); 
             }
+        }
+
+        function aboutUs() {
+            window.open("https://31parkjulianTehCoder.github.io/expert-system", "_self");
         }
 
         function startGame() {
