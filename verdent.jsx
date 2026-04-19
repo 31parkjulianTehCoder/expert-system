@@ -78,9 +78,53 @@ function Main(){
     <>
         {/* TEAL TITLE BAR */}
         <div style={{width: "100vw", height: 16, backgroundColor: "teal", display: "flex", flexFlow: "row nowrap", alignItems: "center", fontSize: 14}}>
+
             <div style={{color: "white"}}>{ `EcoBuilding 1402-A / ${zHeight - sTile.z > 1 ? `Lvl. ${zHeight - sTile.z - 1}` : "Ground Fl."} / Module ${sTile.x +1 }:${sTile.y +1 }`}</div>
             <div style={{width: 16}}></div>
+            <div style={{display: "flex", flexFlow: "row nowrap", color: "lightgray", gap: 5}}>
+                <div className={"fButton"} onClick={() => {
+                    const sf = new File(TS, "Savefile.grx", {type: "application/x-growax"});
+                    const lk = document.createElement('a');
+                    const url = URL.createObjectURL(sf);
+                    lk.href = url;
+                    lk.download = sf.name;
+                    document.body.appendChild(lk);
+                    lk.click();
+                    document.body.removeChild(lk);
+                    window.URL.revokeObjectURL(url);
+                }}>Save</div>
+                <input
+                    type = "file"
+                    style={{ display: "none "}}
+                    id={"FILEINPUT"}
+                    onChange={(event) => {
+                        const file = event.target.files[0];
+                        if (!file) {
+                            window.alert("Error reading file ¯\\(ツ)/¯");
+                            return;
+                        }
+
+                        const reader = new FileReader();
+
+                        reader.onload = (e) => {
+                            const buffer = e.target.result;
+                            const bytes = new Uint8Array(buffer);
+                            const arr = Array.from(bytes);
+                            const decoder = new TextDecoder("utf-8");
+                            const text = decoder.decode(buffer);
+                            const chars = Array.from(text);
+                            
+                            setTS(chars);
+                        };
+
+                        reader.readAsArrayBuffer(file);
+                    }}>
+                </input>
+                <div className={"fButton"} onClick={() => document.getElementById("FILEINPUT").click()}>Load</div>
+            </div>
+            <div style={{width: 16}}></div>
             <div style={{color: "lightgøray"}}>Grøwax Isometric Editor Suite v1.0</div>
+
         </div>
 
         {/* OMNIPOTENT BACKGROUND */}
@@ -100,11 +144,11 @@ function Main(){
                         <div>Sim Time: {simDate.toString().substring(0, 21)}</div>
                         <div>Status: Unsustainable </div>
                         <div>Temperature: 23°F/45°C </div>
-                            <input type={"range"} min={"0"} max={"86400000"} defaultValue={"43200000"} className={"DS"}/>
+                        <input type={"range"} min={"0"} max={"86400000"} defaultValue={"43200000"} className={"DS"}/>
                         <div style={{width: "100%", height: 40, display: "flex", flexFlow: "row nowrap"}}>
                             <img onClick={() => setSimDate(new Date(simDate.getTime() - 86400000))}  src="./assets/fast_minus.svg" className="TB"/>
                             <img onClick={() => setSimDate(new Date(simDate.getTime() - 10800000))}  src="./assets/slow_minus.svg" className="TB"/>
-                            <img src="./assets/play.svg" className="TB"/>
+                            <img src="/assets/play.svg" className="TB"/>
                             <img onClick={() => setSimDate(new Date(simDate.getTime() + 10800000))}  src="./assets/slow_plus.svg" className="TB"/>
                             <img onClick={() => setSimDate(new Date(simDate.getTime() + 86400000))}  src="./assets/fast_plus.svg" className="TB"/>
                         </div>
