@@ -5,25 +5,37 @@ function Backup() {
   let [layer3, setLayer3] = useState(["e", "e", "e", "e", "e", "e"]);
   let [layer4, setLayer4] = useState(["!", "e", "e", "e", "e", "e", "e"]);
   let [happiness, setHappiness] = useState(0);
+  let [population, setPopulation] = useState(0);
+  let [sustainability, setSustainability] = useState(0);
+  let [powerDraw, setPowerDraw] = useState(0);
+  let [money, setMoney] = useState(1000000);
+  const findOccurences = (item) =>
+    layer1.filter((x) => x === item).length +
+    layer2.filter((x) => x === item).length +
+    layer3.filter((x) => x === item).length +
+    layer4.filter((x) => x === item).length;
   useEffect(() => {
     setHappiness(
-      (layer1.filter((x) => x === "🍴").length +
-        layer2.filter((x) => x === "🍴").length +
-        layer3.filter((x) => x === "🍴").length +
-        layer4.filter((x) => x === "🍴").length +
-        (layer1.filter((x) => x === "🎥").length +
-          layer2.filter((x) => x === "🎥").length +
-          layer3.filter((x) => x === "🎥").length +
-          layer4.filter((x) => x === "🎥").length) +
-        (layer1.filter((x) => x === "🌳").length +
-          layer2.filter((x) => x === "🌳").length +
-          layer3.filter((x) => x === "🌳").length +
-          layer4.filter((x) => x === "🌳").length)) *
-        ((layer1.filter((x) => x === "🏠").length +
-          layer2.filter((x) => x === "🏠").length +
-          layer3.filter((x) => x === "🏠").length +
-          layer4.filter((x) => x === "🏠").length) *
-          4)
+      (findOccurences("🍴") + findOccurences("🎥") + findOccurences("🌳")) *
+        (findOccurences("🏠") * 4)
+    );
+    setPopulation(findOccurences("🏠") * 4);
+    setSustainability(
+      findOccurences("☀️") + findOccurences("🌳") - findOccurences("🛢️") * 2
+    );
+    setPowerDraw(
+      findOccurences("🏠") * 4 -
+        (findOccurences("☀️") + findOccurences("🛢️") * 2)
+    );
+    setMoney(
+      1000000 -
+        (findOccurences("🏠") * 500000 +
+          findOccurences("☀️") * 57500 +
+          findOccurences("🛢️") * 57500 +
+          findOccurences("🌳") * 25000 +
+          findOccurences("🎥") * 25000 +
+          findOccurences("🍴") * 25000) +
+        happiness * 2
     );
   });
   return (
@@ -117,44 +129,15 @@ function Backup() {
         </button>
       </div>
       <p style={{ margin: "5px", padding: "5px", fontSize: "20pt" }}>
-        Population:{" "}
-        {(layer1.filter((x) => x === "🏠").length +
-          layer2.filter((x) => x === "🏠").length +
-          layer3.filter((x) => x === "🏠").length +
-          layer4.filter((x) => x === "🏠").length) *
-          4}{" "}
-        Sustainability:{" "}
-        {layer1.filter((x) => x === "☀️").length +
-          layer2.filter((x) => x === "☀️").length +
-          layer3.filter((x) => x === "☀️").length +
-          layer4.filter((x) => x === "☀️").length +
-          (layer1.filter((x) => x === "🌳").length +
-            layer2.filter((x) => x === "🌳").length +
-            layer3.filter((x) => x === "🌳").length +
-            layer4.filter((x) => x === "🌳").length) -
-          (layer1.filter((x) => x === "🛢️").length +
-            layer2.filter((x) => x === "🛢️").length +
-            layer3.filter((x) => x === "🛢️").length +
-            layer4.filter((x) => x === "🛢️").length) *
-            2}{" "}
-        Happiness: {happiness}{" "}
+        Population: {population} Sustainability: {sustainability} Happiness:{" "}
+        {happiness} Power Draw: {powerDraw} Money: {money}{" "}
         <b>
           Overall:{" "}
           {(happiness +
-            (layer1.filter((x) => x === "☀️").length +
-              layer2.filter((x) => x === "☀️").length +
-              layer3.filter((x) => x === "☀️").length +
-              layer4.filter((x) => x === "☀️").length -
-              (layer1.filter((x) => x === "🛢️").length +
-                layer2.filter((x) => x === "🛢️").length +
-                layer3.filter((x) => x === "🛢️").length +
-                layer4.filter((x) => x === "🛢️").length) *
-                2) +
-            (layer1.filter((x) => x === "🏠").length +
-              layer2.filter((x) => x === "🏠").length +
-              layer3.filter((x) => x === "🏠").length +
-              layer4.filter((x) => x === "🏠").length) *
-              4) *
+            population +
+            sustainability -
+            powerDraw +
+            Math.round(money / 1000000)) *
             3}
         </b>
       </p>
@@ -239,5 +222,3 @@ function Backup() {
     </>
   );
 }
-
-const App = Backup;
