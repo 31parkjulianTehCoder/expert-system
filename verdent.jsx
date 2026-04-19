@@ -10,7 +10,9 @@ function Main(){
     // b -> neutral (blue)
     // p -> unsustainable (purple)
 
-    let [simDate, setSimDate] = useState(new Date(new Date().getTime()));
+    let [pVal, setPVal] = useState('🫙');
+
+    let [simDate, setSimDate] = useState(new Date());
 
     let zHeight = 4;
     let width = 4;
@@ -19,7 +21,7 @@ function Main(){
     let sWidth = 4;
     let sHeight = 4;
 
-    let [TS, setTS] = useState(new Array(width * height * zHeight * sWidth * sHeight).fill('🌿'))
+    let [TS, setTS] = useState(new Array(width * height * zHeight * sWidth * sHeight).fill('🫙'))
 
     let [ST, setST] = useState(new Array(width * height * zHeight).fill(false).map((val, i) => i === 0));
 
@@ -28,7 +30,8 @@ function Main(){
     let twoRender = [];
     for (let i = 0; i < sWidth * sHeight; ++i){
         if (i % (width * 2) === 0 ) { twoRender.push(<div style={{width: "100%", height: "100%", /*border: "1px solid black", backgroundColor: "red"*/}}></div>); }
-        twoRender.push(<div onClick={() => {let cpy = [...TS]; cpy[sTile.z * sWidth * sHeight * width * height + sTile.y * sWidth * sHeight * width + sTile.x * sWidth * sHeight + i] = '🌸'; setTS(cpy)}} style={{width: "100%", height: "100%", border: "1px solid black", backgroundColor: "lightblue", gridColumn: "span 2"}}>{TS[sTile.z * sWidth * sHeight * width * height + sTile.y * sWidth * sHeight * width + sTile.x * sWidth * sHeight + i]}</div>);
+        let tehVal = TS[sTile.z * sWidth * sHeight * width * height + sTile.y * sWidth * sHeight * width + sTile.x * sWidth * sHeight + i];
+        twoRender.push(<div onClick={() => {let cpy = [...TS]; cpy[sTile.z * sWidth * sHeight * width * height + sTile.y * sWidth * sHeight * width + sTile.x * sWidth * sHeight + i] = pVal; setTS(cpy)}} className={"twoTile"}>{tehVal === '🫙' ? '' : tehVal}</div>);
         if (i % (width * 2) === width * 2 - 1 ) {  twoRender.push(<div style={{width: "100%", height: "100%", /*border: "1px solid black", backgroundColor: "red"*/}}></div>); }
     }
 
@@ -38,7 +41,8 @@ function Main(){
             let sArray = [];
             for (let w = 0; w< sWidth * sHeight; ++w) {
                 if (w % (width * 2) === 0 ) { sArray.push(<div style={{width: "100%", height: "100%", /*border: "1px solid black", backgroundColor: "red"*/}}></div>); }
-                sArray.push(<div style={{width: "100%", height: "100%", gridColumn: "span 2"}}>{TS[z * sWidth * sHeight * width * height + Math.floor(i / width) * sWidth * sHeight * width + i % width * sWidth * sHeight + w]}</div>);
+                let tehVal = TS[z * sWidth * sHeight * width * height + Math.floor(i / width) * sWidth * sHeight * width + i % width * sWidth * sHeight + w];
+                sArray.push(<div style={{width: "100%", height: "100%", gridColumn: "span 2", display: "flex", justifyContent: "center", alignItems: "center", pointerEvents: "none"}}>{tehVal === '🫙' ? '' : tehVal}</div>);
                 if (w % (width * 2) === width * 2 - 1 ) {  sArray.push(<div style={{width: "100%", height: "100%", /*border: "1px solid black", backgroundColor: "red"*/}}></div>); }
             }
 
@@ -73,14 +77,14 @@ function Main(){
   return (
     <>
         {/* TEAL TITLE BAR */}
-        <div style={{width: "100vw", height: "30px", backgroundColor: "teal", display: "flex", flexFlow: "row nowrap", alignItems: "center", fontSize: 20}}>
+        <div style={{width: "100vw", height: 16, backgroundColor: "teal", display: "flex", flexFlow: "row nowrap", alignItems: "center", fontSize: 14}}>
             <div style={{color: "white"}}>{ `EcoBuilding 1402-A / ${zHeight - sTile.z > 1 ? `Lvl. ${zHeight - sTile.z - 1}` : "Ground Fl."} / Module ${sTile.x +1 }:${sTile.y +1 }`}</div>
-            <div style={{width: 30}}></div>
+            <div style={{width: 16}}></div>
             <div style={{color: "lightgøray"}}>Grøwax Isometric Editor Suite v1.0</div>
         </div>
 
         {/* OMNIPOTENT BACKGROUND */}
-        <div style={{height: "calc(100vh - 30px)", backgroundImage: "url('./assets/bg.jpg')", backgroundSize: "cover", backgroundPosition: "center"}}>
+        <div style={{height: "calc(100vh - 16px)", backgroundImage: "url('./assets/bg.jpg')", backgroundSize: "cover", backgroundPosition: "center"}}>
             {/* BACKGROUND BLUR + 3-PT FLEXBOX */}
             <div style={{height: "100%", width: "100%", display: "flex", flexDirection: "row", alignItems: "flex-start", backdropFilter: "blur(10px) grayscale(50%) contrast(20%)"}}>
 
@@ -90,32 +94,52 @@ function Main(){
                 </div>
 
                 {/* MIDDLE SECTION FLEXBOX */}
-                <div style={{height: "100%", width: "600px", border: "1px solid teal", display: "grid", gridDirection: "column", gridTemplateRows: "1fr, 1fr 1fr" }}>
+                <div style={{height: "100%", width: "600px", display: "grid", gridDirection: "column", gridTemplateRows: "1fr, 1fr 1fr" }}>
+
+                    <div style={{width: "100%", backgroundColor: "#aaa8", display: "flex", flexFlow: "column nowrap"}}>
+                        <div>Sim Time: {simDate.toString().substring(0, 21)}</div>
+                        <div>Status: Unsustainable </div>
+                        <div>Temperature: 23°F/45°C </div>
+                            <input type={"range"} min={"0"} max={"86400000"} defaultValue={"43200000"} className={"DS"}/>
+                        <div style={{width: "100%", height: 40, display: "flex", flexFlow: "row nowrap"}}>
+                            <img onClick={() => setSimDate(new Date(simDate.getTime() - 86400000))}  src="/assets/fast_minus.svg" className="TB"/>
+                            <img onClick={() => setSimDate(new Date(simDate.getTime() - 10800000))}  src="/assets/slow_minus.svg" className="TB"/>
+                            <img src="/assets/play.svg" className="TB"/>
+                            <img onClick={() => setSimDate(new Date(simDate.getTime() + 10800000))}  src="/assets/slow_plus.svg" className="TB"/>
+                            <img onClick={() => setSimDate(new Date(simDate.getTime() + 86400000))}  src="/assets/fast_plus.svg" className="TB"/>
+                        </div>
+
+                    </div>
 
 
-                    <div style={{height: "100%", backgroundColor: "#aaa8", borderRadius: 20, display: "grid", gridTemplateRows: "5fr 1fr"}}>
-                        <div style={{display: "flex", padding: 20, flexFlow: "row nowrap",  borderBottom: "3px solid gray"}}><div style={{color: "white", fontSize: 40}}>{`${simDate.getHours() > 12 ? simDate.getHours() - 12 : simDate.getHours() === 0 ? 12 : simDate.getHours()}:${simDate.getMinutes()}${simDate.getMinutes() < 10 ? '0' : ''}`}</div><div>{simDate.getHours() > 12 ? "PM" : "AM"}</div><div style={{display: "flex", flexFlow: "column nowrap"}}><div>{simDate.toString()}</div><div>2026</div></div></div>
-                        <div style={{display: "flex", justifyContent: "space-evenly", padding: 10}}><img onClick={() => setSimDate(new Date(simDate.getTime() - 86459179)) }  src={"./assets/fast_minus.svg"} className={"timeButton"} ></img><img onClick={() => setSimDate(new Date(simDate.getTime() - 1000 * 60 * 60 * 3)) } className={"timeButton"} src={"./assets/slow_minus.svg"}></img><img className={"timeButton"} src={"./assets/play.svg"}></img><img className={"timeButton"} src={"./assets/slow_plus.svg"}></img><img src={"./assets/fast_plus.svg"} className={"timeButton"}></img></div>
+                    <div style={{
+                        padding: 30,
+                        height: "100%",
+                        display: "flex",
+                        justifyContent: "flex-start",
+                        alignItems: "flex-start",
+                        flexDirection: "column",
+                        color: "white",
+                        fontSize: 16}}>
+                        <div className={"pButton"} onClick={() => setPVal('🫙')}>[X] Erase Tile</div>
+                        <div className={"pButton"} onClick={() => setPVal('🏠')}>[U] 🏠Unit</div>
+                        <div className={"pButton"} onClick={() => setPVal('🌿')}>[G] 🌿Green Space</div>
+                        <div className={"pButton"} onClick={() => setPVal('🪨')}>[W] 🪨️Walkway</div>
+                        <div className={"pButton"} onClick={() => setPVal('⚡️')}>[S] ⚡️Solar Panel</div>
+                        <div className={"pButton"} onClick={() => setPVal('🛋')}>[P] 🛋️Patio</div>
+                        <div className={"pButton"} onClick={() => setPVal('🥕')}>[G] 🥕Garden</div>
+                        <div className={"pButton"} onClick={() => setPVal('🔀')}>[R] 🔀Stairwell</div>
+                        <div className={"pButton"} onClick={() => setPVal('🛗')}>[E] 🛗Elevator</div>
+                        <div className={"pButton"} onClick={() => setPVal('🧺')}>[E] 🧺Laundry</div>
                     </div>
-                    <div style={{padding: 30, height: "100%", display: "flex", justifyContent: "flex-start", alignItems: "flex-start",flexDirection: "column", color: "white", fontSize: 24, fontFamily: "monospace"}}>
-                        <div>[X] Erase Tile</div>
-                        <div>[U] 🏠Unit</div>
-                        <div>[G] 🌿Green Space</div>
-                        <div>[W] ⬜️Walkway</div>
-                        <div>[S] ⚡️Solar Panel</div>
-                        <div>[P] 🛋️Patio</div>
-                        <div>[G] 🥕Garden</div>
-                        <div>[R] 🔀Stairwell</div>
-                        <div>[E] 🛗Elevator</div>
-                        <div>[E] 🧺Laundry</div>
-                        <button onClick={() => setSimDate(new Date(simDate.getTime() + 1000 * 60 * 60 * 24))}>{`${simDate.getHours()}:${simDate.getMinutes()}`}</button>
-                    </div>
-                    <div style={{display:"flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
-                        <div style={{fontSize: 20, color: "white"}}>{ `. / ${zHeight - sTile.z > 1 ? `Lvl. ${zHeight - sTile.z - 1}` : "Ground Fl."} / Module ${sTile.x +1 }:${sTile.y +1 }`}</div>
-                        <div style={{padding: 10, gap: 5, borderBottom: "15px solid gray", borderRadius: 10, backgroundColor: "dodgerblue", width: 400, height: 400, display: "grid", gridTemplateColumns: `repeat(${sWidth * 2 + 1}, 1fr)`, gridTemplateRows: `repeat(${sHeight}, 1fr)`}}>
+
+                    <div style={{width: "100%"}}>
+                        <div style={{border: "10px solid lightseagreen", gap: 5, borderRadius: 14, backgroundColor: "#aaa8", width: 400, height: 400, display: "grid", gridTemplateColumns: `repeat(${sWidth * 2 + 1}, 1fr)`, gridTemplateRows: `repeat(${sHeight}, 1fr)`}}>
                             {twoRender}
                         </div>
+                        <div style={{fontSize: 16, color: "lightgray"}}>{ `1402-A / ${zHeight - sTile.z > 1 ? `Lvl. ${zHeight - sTile.z - 1}` : "Ground Fl."} / Module ${sTile.x +1 }:${sTile.y +1 }`}</div>
                     </div>
+
 
 
                 </div>
