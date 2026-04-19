@@ -44,7 +44,15 @@ function Backup() {
       <br />*/}
       <div>
         <button
-          style={{ margin: "5px", padding: "5px", fontSize: "15pt" }}
+          style={{
+            margin: "5px",
+            padding: "5px",
+            fontSize: "15pt",
+            backgroundColor: "teal",
+            outline: "0px solid teal",
+            border: "none",
+            borderRadius: "10px",
+          }}
           onClick={() => {
             setCurrent("🏠");
           }}
@@ -52,7 +60,15 @@ function Backup() {
           Residential
         </button>
         <button
-          style={{ margin: "5px", padding: "5px", fontSize: "15pt" }}
+          style={{
+            margin: "5px",
+            padding: "5px",
+            fontSize: "15pt",
+            backgroundColor: "teal",
+            outline: "0px solid teal",
+            border: "none",
+            borderRadius: "10px",
+          }}
           onClick={() => {
             setCurrent("🛢️");
           }}
@@ -60,7 +76,15 @@ function Backup() {
           Oil Plant
         </button>
         <button
-          style={{ margin: "5px", padding: "5px", fontSize: "15pt" }}
+          style={{
+            margin: "5px",
+            padding: "5px",
+            fontSize: "15pt",
+            backgroundColor: "teal",
+            outline: "0px solid teal",
+            border: "none",
+            borderRadius: "10px",
+          }}
           onClick={() => {
             setCurrent("☀️");
           }}
@@ -68,7 +92,15 @@ function Backup() {
           Solar Farm
         </button>
         <button
-          style={{ margin: "5px", padding: "5px", fontSize: "15pt" }}
+          style={{
+            margin: "5px",
+            padding: "5px",
+            fontSize: "15pt",
+            backgroundColor: "teal",
+            outline: "0px solid teal",
+            border: "none",
+            borderRadius: "10px",
+          }}
           onClick={() => {
             setCurrent("🍴");
           }}
@@ -76,7 +108,15 @@ function Backup() {
           Resturaunt
         </button>
         <button
-          style={{ margin: "5px", padding: "5px", fontSize: "15pt" }}
+          style={{
+            margin: "5px",
+            padding: "5px",
+            fontSize: "15pt",
+            backgroundColor: "teal",
+            outline: "0px solid teal",
+            border: "none",
+            borderRadius: "10px",
+          }}
           onClick={() => {
             setCurrent("🎥");
           }}
@@ -84,7 +124,15 @@ function Backup() {
           Theater
         </button>
         <button
-          style={{ margin: "5px", padding: "5px", fontSize: "15pt" }}
+          style={{
+            margin: "5px",
+            padding: "5px",
+            fontSize: "15pt",
+            backgroundColor: "teal",
+            outline: "0px solid teal",
+            border: "none",
+            borderRadius: "10px",
+          }}
           onClick={() => {
             setCurrent("🌳");
           }}
@@ -92,7 +140,15 @@ function Backup() {
           Green Space
         </button>
         <button
-          style={{ margin: "5px", padding: "5px", fontSize: "15pt" }}
+          style={{
+            margin: "5px",
+            padding: "5px",
+            fontSize: "15pt",
+            backgroundColor: "teal",
+            outline: "0px solid teal",
+            border: "none",
+            borderRadius: "10px",
+          }}
           onClick={() => {
             setCurrent("e");
           }}
@@ -100,7 +156,15 @@ function Backup() {
           Erase
         </button>
         <button
-          style={{ margin: "5px", padding: "5px", fontSize: "15pt" }}
+          style={{
+            margin: "5px",
+            padding: "5px",
+            fontSize: "15pt",
+            backgroundColor: "teal",
+            outline: "0px solid teal",
+            border: "none",
+            borderRadius: "10px",
+          }}
           onClick={() => {
             alert(`Paste this somewhere safe:`);
             alert(
@@ -116,7 +180,15 @@ function Backup() {
           <b>Save</b>
         </button>
         <button
-          style={{ margin: "5px", padding: "5px", fontSize: "15pt" }}
+          style={{
+            margin: "5px",
+            padding: "5px",
+            fontSize: "15pt",
+            backgroundColor: "teal",
+            outline: "0px solid teal",
+            border: "none",
+            borderRadius: "10px",
+          }}
           onClick={() => {
             let n = JSON.parse(prompt("Enter save code"));
             setLayer1(n.layer1);
@@ -146,10 +218,13 @@ function Backup() {
         <button
           style={{
             fontSize: "20pt",
-            padding: 5,
+            margin: 5,
             height: 100,
             width: v === "!" ? 50 : 100,
             opacity: v === "!" ? 0 : undefined,
+            border: "none",
+            borderRadius: "10px",
+            backgroundColor: "lightgrey",
           }}
           onClick={() => {
             let temp = [...layer1];
@@ -165,10 +240,13 @@ function Backup() {
         <button
           style={{
             fontSize: "20pt",
-            padding: 5,
+            margin: 5,
             height: 100,
             width: v === "!" ? 50 : 100,
             opacity: v === "!" ? 0 : undefined,
+            border: "none",
+            borderRadius: "10px",
+            backgroundColor: "lightgrey",
           }}
           onClick={() => {
             let temp = [...layer2];
@@ -184,10 +262,13 @@ function Backup() {
         <button
           style={{
             fontSize: "20pt",
-            padding: 5,
+            margin: 5,
             height: 100,
             width: v === "!" ? 50 : 100,
             opacity: v === "!" ? 0 : undefined,
+            border: "none",
+            borderRadius: "10px",
+            backgroundColor: "lightgrey",
           }}
           onClick={() => {
             let temp = [...layer3];
@@ -203,10 +284,13 @@ function Backup() {
         <button
           style={{
             fontSize: "20pt",
-            padding: 5,
+            margin: 5,
             height: 100,
             width: v === "!" ? 50 : 100,
             opacity: v === "!" ? 0 : undefined,
+            border: "none",
+            borderRadius: "10px",
+            backgroundColor: "lightgrey",
           }}
           onClick={() => {
             let temp = [...layer4];
@@ -218,7 +302,12 @@ function Backup() {
         </button>
       ))}
       <br />
-      <a href="./titlescreen.html">Back to title</a>
+      <a
+        style={{ margin: 5, color: "teal", fontSize: "18pt" }}
+        href="./titlescreen.html"
+      >
+        Back to title
+      </a>
     </>
   );
 }
