@@ -81,7 +81,7 @@ function Backup() {
             setCurrent("🎥");
           }}
         >
-          Theather
+          Theater
         </button>
         <button
           style={{ margin: "5px", padding: "5px", fontSize: "15pt" }}
